@@ -3,16 +3,31 @@ import { AppContext } from "../context/AppContext";
 import "./CurrencyPicker.css";
 
 const CurrencyPicker = () => {
-  const { currency } = useContext(AppContext);
+  const { currency, dispatch } = useContext(AppContext);
+
+  const submitEvent = (curr) => {
+    dispatch({
+      type: "CHG_CURRENCY",
+      payload: curr,
+    });
+  };
 
   return (
     <div className="alert alert-success dropdown">
-      <span>Currency (Pounds)</span>
+      <span>Currency ({currency})</span>
       <div className="dropdown-content">
-        <button className="btn btn-success">Dollar</button>
-        <button className="btn btn-success">Pounds</button>
-        <button className="btn btn-success">Euro</button>
-        <button className="btn btn-success">Ruppee</button>
+        <button className="btn btn-success" onClick={() => submitEvent("$")}>
+          Dollar
+        </button>
+        <button className="btn btn-success" onClick={() => submitEvent("£")}>
+          Pounds
+        </button>
+        <button className="btn btn-success" onClick={() => submitEvent("€")}>
+          Euro
+        </button>
+        <button className="btn btn-success" onClick={() => submitEvent("₹")}>
+          Ruppee
+        </button>
       </div>
     </div>
   );
