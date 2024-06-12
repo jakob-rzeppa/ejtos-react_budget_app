@@ -24,6 +24,18 @@ const ExpenseItem = (props) => {
     });
   };
 
+  const decreaseAllocation = (name) => {
+    const expense = {
+      name: name,
+      cost: -10,
+    };
+
+    dispatch({
+      type: "ADD_EXPENSE",
+      payload: expense,
+    });
+  };
+
   return (
     <tr>
       <td>{props.name}</td>
@@ -32,7 +44,38 @@ const ExpenseItem = (props) => {
         {props.cost}
       </td>
       <td>
-        <button onClick={(event) => increaseAllocation(props.name)}>+</button>
+        <button
+          onClick={(event) => increaseAllocation(props.name)}
+          style={{
+            borderRadius: "100%",
+            aspectRatio: "1/1",
+            width: "30px",
+            backgroundColor: "green",
+            border: "0",
+            color: "white",
+            fontSize: "16px",
+            fontWeight: "bolder",
+          }}
+        >
+          +
+        </button>
+      </td>
+      <td>
+        <button
+          onClick={(event) => decreaseAllocation(props.name)}
+          style={{
+            borderRadius: "100%",
+            aspectRatio: "1/1",
+            width: "30px",
+            backgroundColor: "red",
+            border: "0",
+            color: "white",
+            fontSize: "15px",
+            fontWeight: "bolder",
+          }}
+        >
+          -
+        </button>
       </td>
       <td>
         <TiDelete size="1.5em" onClick={handleDeleteExpense}></TiDelete>
